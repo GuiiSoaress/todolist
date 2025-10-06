@@ -6,6 +6,7 @@ export default function App() {
   // Variavel de estado que armazenara todas as atividades
   const [todos, setTodos] = useState([]); //[] Indica um array
   const [visivel, setVisivel] = useState()
+  const [buttonText, setButtonText] = useState("Invisivel");
 
   // Variavel de estado relativo a tarefa
   const [newTask, setNewTask] = useState("");
@@ -17,7 +18,7 @@ export default function App() {
   // Função adiciona uma tarefa na lista
   const addTask = () => {
     if (newTask.trim() === "") return;
-
+    
     // Objeto que representa a tarefa
     const newTodo = {
       id: Date.now(), // Id unico baseado na data e hora atual
@@ -44,6 +45,9 @@ export default function App() {
   //função que esconde a lista
   const showList = () => {
     setVisivel(!visivel)
+    if(visivel != true){
+      setButtonText("Invisivel")
+    }else{ setButtonText("Visivel");}
   }
 
   return (
@@ -59,7 +63,7 @@ export default function App() {
           style={styles.input}
         />
         <button onClick={addTask} style={styles.button}>Adicionar</button>
-        <button onClick={showList} style={styles.button}>lista</button>
+        <button onClick={showList} style={styles.button}>{buttonText}</button>
       </div>
 
       <div marginTop= "20px">
